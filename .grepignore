@@ -1,0 +1,6 @@
+.git
+.gitignore
+.grepignore
+grep.py
+.dccache
+a/c/e.txt
