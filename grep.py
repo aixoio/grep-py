@@ -1,4 +1,3 @@
-from fileinput import filename
 import os
 
 dir_path = os.path.abspath(os.getcwd())
@@ -83,7 +82,7 @@ def folderMode(submode):
             
             truename = filepath[2::]
             
-            if ignorelist.count(truename) or truename.find(".git") > -1:
+            if ignorelist.count(truename) > 0 or truename.find(".git") > -1:
                 
                 continue
             
