@@ -6,7 +6,58 @@ dir_path = os.path.abspath(os.getcwd())
 def fileMode(submode):
     
     
-    pass
+    inpath = input("Enter the file path: ")
+    
+    if submode == "1":
+        
+        findThat = input("Enter what you want to find: ")
+        
+        try:
+
+            with open(inpath, "r") as thefile:
+                
+                filedata = thefile.read()
+                
+        except:
+            
+            exit()
+            
+        
+        
+        if filedata.find(findThat) > -1:
+            
+            print("We have found your query in this file")
+            
+        else:
+            
+            print("We have not found your query in this file")
+            
+            
+            
+    if submode == "2":
+        
+        findThat = input("Enter what you want to find: ")
+        replaceIt = input("Enter what you want to replace it with: ")
+        
+        try:
+
+            with open(inpath, "r") as thefile:
+                
+                filedata = thefile.read()
+                
+        except:
+            
+            exit()
+            
+        
+        newfiledata = filedata.replace(findThat, replaceIt)
+        
+        with open(inpath, "w") as thefile:
+            
+            thefile.write(newfiledata)
+            
+        print("We have run the query that you have enterd")
+
     
 
 def folderMode(submode):
