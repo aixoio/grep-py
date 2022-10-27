@@ -1,3 +1,4 @@
+from fileinput import filename
 import os
 
 dir_path = os.path.abspath(os.getcwd())
@@ -21,6 +22,7 @@ def folderMode(submode):
         ignorelist = []
 
     files = []
+    filenames = []
 
     for (dir_path, dir_names, file_names) in os.walk("."):
         
@@ -30,14 +32,55 @@ def folderMode(submode):
             
             truename = filepath[2::]
             
-            if ignorelist.count(truename):
+            if ignorelist.count(truename) or truename.find(".git") > -1:
                 
                 continue
             
             files.append(filepath)
+            filenames.append(file)
+        
+    if submode == "1":
+        
+        filecontents = []
+        
+        for filepath in files:
             
+            truename = filepath[2::]
             
-    print(files)
+            with open(truename, "r") as filecontent:
+                
+                contents = filecontent.read()
+                
+                filecontents.append({
+                    
+                    "name": filepath,
+                    "content": contents
+                    
+                })
+                
+        findThat = input("Enter what you want to find: ")
+        
+        finds = []
+        
+        for filedata in filecontents:
+            
+            if filedata.get("content").find(findThat) > -1:
+                
+                
+                finds.append(filedata.get("name"))
+                
+        print()
+            
+        
+        for find in finds:
+            
+            print(find[2::])
+        
+        
+        print()
+        
+        print("In all of the files above we have found your query")
+
     
     
 def rootMode(submode):
