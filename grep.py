@@ -37,7 +37,13 @@ def folderMode(submode):
                 continue
             
             files.append(filepath)
-            filenames.append(file)
+            filenames.append({
+                
+                "path": filepath,
+                "truepath": truename,
+                "name": file
+                
+            })
         
     if submode == "1":
         
@@ -130,6 +136,33 @@ def folderMode(submode):
         print()
         
         print("In all of the files above we have found your query")
+        
+    if submode == "3":
+        
+        
+        findThat = input("Enter what you want to find in the file name: ")
+        
+        finds = []
+        
+        for file in filenames:
+            
+            if file.get("name").find(findThat) > -1:
+                
+                finds.append(file.get("truepath"))
+                
+                
+        print()
+            
+        
+        for find in finds:
+            
+            print(find)
+        
+        
+        print()
+        
+        print("In all of the files above we have found your query")
+        
         
 
     
